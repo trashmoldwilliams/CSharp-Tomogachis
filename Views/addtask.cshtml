@@ -1,0 +1,18 @@
+<h1>To Do List</h1>
+<h3>Add a new task:</h3>
+<form action='/view_tasks' method='post'>
+  <label for='add-task'>Task Description</label>
+  <input id='add-task' name='add-task' type='text'>
+</br>
+  <label for='picture-path'>Image Path</label>
+  <input id='picture-path' name='picture-path' type='text'>
+</br>
+  <p> Have you lived here? </p>
+  <label for='lived-in'>Yes?</label>
+  <input type="radio" name='lived-in' value=true checked>
+
+  <label for='lived-in'>No</label>
+  <input type="radio" name='lived-in' value=false>
+</br>
+  <button type='submit'>Add task</button>
+</form>
