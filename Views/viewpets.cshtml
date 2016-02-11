@@ -1,0 +1,24 @@
+<h1>Here are the Tomogachis</h1>
+</br>
+<form action='/decayPetValues' method='post'>
+  <button type='submit'>Time Pass</button>
+</form>
+</br>
+  @foreach (var Tomogachi in Model)
+  {
+    <img src=http://ecx.images-amazon.com/images/I/51va9YhxeBL._AC_UL320_SR280,320_.jpg>
+    <p> Pet Id: @Tomogachi.GetIdentification()
+      Pet Food Level: @Tomogachi.GetFood()
+      Pet Rest Level: @Tomogachi.GetRest()
+      Pet Play Level: @Tomogachi.GetPlay()</p>
+
+  }
+
+  <form action='/add_pets' method='post'>
+    <button type='submit'>Add Pet</button>
+  </form>
+
+
+  <form action='/pets_cleared' method='post'>
+    <button type='submit'> Clear Pets </button>
+  </form>

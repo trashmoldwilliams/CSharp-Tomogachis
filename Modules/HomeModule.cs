@@ -1,37 +1,44 @@
 using Nancy;
 using System.Collections.Generic;
-using TaskList;
+using VirtualPets;
 using System;
 
-namespace ToDoList
+namespace Pets
 {
   public class HomeModule : NancyModule
   {
     public HomeModule()
     {
-      Get["/"] = _ => View["addtask.cshtml"];
 
-      Post["/view_tasks"] = _ => {
-        Task newTask = new Task(Request.Form["add-task"], Request.Form["picture-path"], Request.Form["lived-in"]);
-        newTask.Save();
-        List<Task> theTasks = Task.GetAllTasks();
-        return View["viewtask.cshtml", theTasks];
+      Post["/add_pets"] = _ => {
+        Tomogachi newTomogachi = new Tomogachi();
+        newTomogachi.Save();
+        List<Tomogachi> theTomogachis = Tomogachi.GetAllTomogachis();
+        return View["viewpets.cshtml", theTomogachis];
       };
 
-      Get["/view_tasks_nothingNew"] = _ => {
-        List<Task> theTasks = Task.GetAllTasks();
-        return View["viewtask.cshtml", theTasks];
+      Get["/"] = _ => {
+        List<Tomogachi> theTomos = Tomogachi.GetAllTomogachis();
+        return View["viewpets.cshtml", theTomos];
       };
 
 
-      Post["/tasks_cleared"] = _ => {
-        Task.ClearAllTasks();
-        return View["addtask.cshtml"];
+      Post["/pets_cleared"] = _ => {
+        Tomogachi.ClearAllTomogachis();
+        List<Tomogachi> theTomos = Tomogachi.GetAllTomogachis();
+        return View["viewpets.cshtml", theTomos];
       };
 
       Get["/view_tasks/{id}"] = parameters => {
-        Task task = Task.FindById(parameters.id);
-        return View["aSingleTask.cshtml", task];
+        Tomogachi tomo = Tomogachi.FindById(parameters.id);
+        return View["aSingleTask.cshtml", tomo];
+      };
+
+      Post["/decayPetValues"] = _ => {
+        Tomogachi.DecayValues();
+        // Tomogachi.CheckForDead();
+        List<Tomogachi> theTomos = Tomogachi.GetAllTomogachis();
+        return View["viewpets.cshtml", theTomos];
       };
     }
   }
